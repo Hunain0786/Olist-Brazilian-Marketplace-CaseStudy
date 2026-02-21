@@ -66,3 +66,19 @@ Based on these results, we chose **k=3** to provide a more nuanced segmentation 
     *   **Efficient Sellers:** Help them scale their marketing and volume without losing quality.
     *   **Struggling Sellers:** Focus on logistical training and infrastructure support.
     *   **Premium Sellers:** Maintain high-value transactions with slight operational optimizations.
+ 
+  ## 4. Model Limitations and Reliability
+
+While the clustering provides a powerful lens for marketplace strategy, it is important to understand when to trust these results and where the model has blind spots.
+
+### When to Trust the Model
+*   **Established Sellers:** The model is highly reliable for sellers with a stable history (e.g., >10 orders). Their behavioral patterns are less likely to be skewed by a single anomalous event.
+*   **Strategic Categorization:** Use these segments for high-level decision-making, such as designing tiered rewards programs or identifying systemic operational bottlenecks.
+*   **Performance Benchmarking:** The metrics for "Efficient Sellers" provide a statistically grounded "Gold Standard" for other sellers to aim for.
+
+### When to NOT Trust the Model (Limitations)
+*   **"Cold Start" Sellers:** New sellers with only 1-2 orders may be unfairly penalized. For example, a single late delivery due to a carrier strike could place 
+
+### Recommendation
+**Do not use these categories for automated punitive actions** (like account suspension) without a manual review, especially for sellers with low transaction volumes. Use them as a **flagging system** to highlight where support or recognition is most needed.
+
