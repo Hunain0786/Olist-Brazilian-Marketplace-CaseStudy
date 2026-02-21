@@ -6,6 +6,13 @@ This project provides a FastAPI application for predicting order delivery delays
 
 "We're growing fast but our margins are getting squeezed. Sellers are complaining, buyers leave bad reviews, and we don't really know where to focus. We've heard ML can help but we don't know what to build first. Can you look at our data and tell us what would actually make a difference?"
 
+## Detailed Analysis & Conclusions
+
+For a deep dive into the motivation, technical approach, evaluation metrics, and business insights of each model, please refer to the following documents:
+
+*   **[Seller Performance & Clustering Analysis](./notebooks/Revenue_Concentration_Analysis/conclusion.md)**: Explore I we transitioned from revenue-based to behavioural clustering to support high-potential sellers.
+*   **[Delivery Delay Prediction Analysis](./notebooks/Delayed_Delivery/conclusion.md)**: Understand the impact of delays on customer satisfaction and the business value of predicting delivery times.
+
 ## Getting Started
 
 ### Option 1: Docker Setup
