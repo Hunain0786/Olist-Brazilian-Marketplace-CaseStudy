@@ -17,6 +17,9 @@ To determine the optimal number of clusters ($k$), we relied on two primary metr
     *   **Phase 1 Result:** The high score of **0.73** for $k=2$ confirmed a major structural split in the marketplace (Big vs. Small) driven by volume.
     *   **Phase 2 Result:** In the behavioral phase, we achieved score of **0.60 ($k=3$)**, validating that the behavioral segments (Efficient, Premium, Struggling) are distinct and reliable even when revenue is excluded.
 *   **Elbow Method (Inertia):** We used this to observe the "within-cluster sum of squares." The point where the rate of decrease shifts (the "elbow") suggests a balance between cluster tightness and model complexity.
+*   **Feature Splitting Strategy:** We created two distinct "views" of the marketplace by strategically splitting our feature sets:
+    *   **Split 1 (Scale-Based):** Included high-magnitude features like revenue and order counts. This view was designed to identify the "structural giants" of the platform.
+    *   **Split 2 (Behavior-Based):** Purposefully dropped the dominant scale-related features to isolate pure operational patterns (speed, quality, reliability). This allowed us to find efficient sellers who might be small in revenue but high in potential.
 
 ---
 
