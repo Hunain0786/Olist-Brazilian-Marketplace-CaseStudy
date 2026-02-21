@@ -8,7 +8,7 @@ This project provides a FastAPI application for predicting order delivery delays
 
 ## Detailed Analysis & Conclusions
 
-For a deep dive into the motivation, technical approach, evaluation metrics, and business insights of each model, please refer to the following documents:
+For a deep dive into the motivation, technical approach, evaluation metrics, and business **insights**,**limitations** of each model, please refer to the following documents:
 
 *   **[Seller Performance & Clustering Analysis](./notebooks/Revenue_Concentration_Analysis/conclusion.md)**: Explore I we transitioned from revenue-based to behavioural clustering to support high-potential sellers.
 *   **[Delivery Delay Prediction Analysis](./notebooks/Delayed_Delivery/conclusion.md)**: Understand the impact of delays on customer satisfaction and the business value of predicting delivery times.
