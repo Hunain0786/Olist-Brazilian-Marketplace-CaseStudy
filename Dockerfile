@@ -10,11 +10,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-ENV PYTHONPATH=/app/src
+ENV PYTHONPATH=/app:/app/src
 
-RUN python src/train_model.py && \
-    python src/train_seller_models.py && \
-    rm -rf /root/.cache/kagglehub
 
 EXPOSE 8000
 
