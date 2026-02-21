@@ -1,5 +1,5 @@
 curl -X 'POST' \
-  'http://localhost:8000/predict' \
+  'http://34.228.155.96:8000/predict' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -15,7 +15,7 @@ curl -X 'POST' \
 
 
 curl -X 'POST' \
-  'http://localhost:8000/predict_revenue_category' \
+  'http://34.228.155.96:8000/predict_revenue_category' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -32,7 +32,7 @@ curl -X 'POST' \
 
 
 curl -X 'POST' \
-  'http://localhost:8000/predict_behavior_category' \
+  'http://34.228.155.96:8000/predict_behavior_category' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
