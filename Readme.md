@@ -51,6 +51,21 @@ To run the application manually on your local machine, follow these steps:
 
 ---
 
+---
+
+## Live API
+
+The API is currently hosted on an **AWS EC2 instance**.
+
+- **Interactive Documentation**: [http://34.228.155.96:8000/docs](http://34.228.155.96:8000/docs)
+- **Base URL**: `http://34.228.155.96:8000`
+
+## Testing the API
+
+To quickly test the API endpoints using `curl` or `PowerShell`, please refer to the **[Curl.md](./Curl.md)** file which contains ready-to-use commands for all major endpoints.
+
+---
+
 
 ## Delayed Delivery Prediction Model
 
