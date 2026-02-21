@@ -4,9 +4,9 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from exceptions import ArtifactLoadError
-from handlers import register_exception_handlers
-from routers import predictor, router
+from core.exceptions import ArtifactLoadError
+from api.handlers import register_exception_handlers
+from api.routers import predictor, router
 
 logging.basicConfig(
     level=logging.INFO,

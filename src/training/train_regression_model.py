@@ -9,7 +9,7 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 
-ARTIFACTS_DIR = os.path.join(os.path.dirname(__file__), "artifacts")
+ARTIFACTS_DIR = os.path.join(os.path.dirname(__file__), "..", "artifacts")
 os.makedirs(ARTIFACTS_DIR, exist_ok=True)
 
 

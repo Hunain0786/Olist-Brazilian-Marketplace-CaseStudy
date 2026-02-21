@@ -35,7 +35,7 @@ def main():
     print(f"API docs available at http://localhost:{args.port}/docs")
 
     uvicorn.run(
-        "main:app",
+        "api.main:app",
         host=args.host,
         port=args.port,
         reload=args.reload,

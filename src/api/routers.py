@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from schemas import (
+from core.schemas import (
     HealthResponse,
     OrderInput,
     PredictionResponse,
@@ -7,9 +7,8 @@ from schemas import (
     SellerCategoryResponse,
     SellerRevenueInput,
 )
-from exceptions import ModelNotLoadedError
-
-from predictor import DelayPredictor
+from core.exceptions import ModelNotLoadedError
+from core.predictor import DelayPredictor
 
 predictor = DelayPredictor()
 

@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import RobustScaler
 
-ARTIFACTS_DIR = os.path.join(os.path.dirname(__file__), "artifacts")
+ARTIFACTS_DIR = os.path.join(os.path.dirname(__file__), "..", "artifacts")
 os.makedirs(ARTIFACTS_DIR, exist_ok=True)
 
 

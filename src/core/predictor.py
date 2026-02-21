@@ -8,22 +8,21 @@ import numpy as np
 import pandas as pd
 import shap
 
-from exceptions import (
+from core.exceptions import (
     ArtifactLoadError,
     FeatureEngineeringError,
     InvalidInputError,
     ModelNotLoadedError,
     PredictionInternalError,
 )
-from schemas import OrderInput, SellerBehaviorInput, SellerRevenueInput
+from core.schemas import OrderInput, SellerBehaviorInput, SellerRevenueInput
 
 logger = logging.getLogger(__name__)
 
-ARTIFACTS_DIR = os.path.join(os.path.dirname(__file__), "artifacts")
+ARTIFACTS_DIR = os.path.join(os.path.dirname(__file__), "..", "artifacts")
 
 
 def _load_pickle(name: str) -> Any:
-    """Load a pickle file from the artifacts directory with a descriptive error."""
     path = os.path.join(ARTIFACTS_DIR, name)
     try:
         with open(path, "rb") as f:
@@ -45,7 +44,6 @@ def _haversine_km(lat1, lon1, lat2, lon2) -> float:
 
 
 class DelayPredictor:
-    """Wraps all inference logic behind a clean interface."""
 
     def __init__(self):
         self.model: Any = None
@@ -64,12 +62,6 @@ class DelayPredictor:
 
 
     def load(self) -> None:
-        """
-        Load all artifacts from disk.  Call once at startup.
-
-        Raises:
-            ArtifactLoadError: if any required .pkl file is missing or corrupt.
-        """
         logger.info("Loading model artifacts from '%s' …", ARTIFACTS_DIR)
 
         self.model          = _load_pickle("rf_regressor.pkl")
@@ -98,7 +90,6 @@ class DelayPredictor:
  
     @staticmethod
     def _validate_order(order: OrderInput) -> None:
-        """Check for logically invalid field values that Pydantic can't catch."""
         if order.order_size < 1:
             raise InvalidInputError("order_size", "must be at least 1")
 
@@ -153,7 +144,6 @@ class DelayPredictor:
         except KeyError:
             raise FeatureEngineeringError("lookup table is missing 'state_to_region'")
 
-        # 1. Temporal features
         ts = order.order_purchase_timestamp
         purchase_month       = ts.month
         purchase_day_of_week = ts.weekday()
@@ -235,7 +225,6 @@ class DelayPredictor:
         return df
 
     def _get_shap_influences(self, df: pd.DataFrame, top_n: int = 5) -> List[dict]:
-        """Return top-N features by |SHAP value|.  Returns empty list on failure."""
         try:
             shap_values  = self.explainer.shap_values(df)
             feature_names = list(df.columns)
