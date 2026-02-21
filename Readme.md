@@ -44,7 +44,7 @@ To run the application manually on your local machine, follow these steps:
    ```bash
    pip install -r requirements.txt
    ```
-3. Install the required dependencies:
+3. navigate to src:
    ```bash
    cd src
    ```
