@@ -3,25 +3,45 @@
 ## Overview
 This document summarizes the findings from the **Delayed Delivery Prediction** analysis. The model was developed to predict the number of days an order is delayed relative to its initial estimate, which is a critical factor for customer satisfaction on the Olist platform.
 
-## 1. Model Performance & Metrics
+## 1. Motivation: Bad Review Analysis
+The primary driver for this model was understanding the correlation between late deliveries and negative customer feedback. Exploratory analysis revealed:
+*   **Total bad reviews (1-2 stars):** 12,347
+*   **Bad reviews associated with late delivery:** 4,096
+*   **Direct Attribution:** **33.17% of all bad reviews** are caused directly by delivery delays.
+*   **Score Disparity:** Customers who receive orders on-time/early give an average score of **4.29**, whereas late orders drop to **2.46**.
+
+## 2. Evaluation Metric Rationale
+To evaluate the regression model's accuracy, we utilized three distinct metrics:
+
+*   **Mean Absolute Error (MAE):** We chose MAE because it provides an intuitive "real-world" error in units of days. An MAE of 5.57 tells us exactly how much our predictions deviate from reality on average.
+*   **Root Mean Squared Error (RMSE):** Logistics delays are non-linear in their impact; a 10-day delay is significantly more damaging to brand trust than two 5-day delays. RMSE penalizes these larger errors more heavily, reflecting the high business cost of extreme delays.
+*   **R² Score:** This metric was used to gauge how much of the "logistical noise" the model could actually explain. Given the unpredictable nature of transit (traffic, weather, etc.), an R² of 0.31 indicates the model has successfully captured a significant portion of the underlying patterns.
+
+---
+
+## 3. Model Performance & Metrics
 A **Random Forest Regressor** was trained and evaluated on the dataset. The key performance indicators are:
 
-*   **Mean Absolute Error (MAE):** **5.57 days**. On average, predictions deviate from the actual delay by approximately 5.6 days.
-*   **Root Mean Squared Error (RMSE):** **8.43 days**. The gap between MAE and RMSE indicates that the model is sensitive to large outliers (orders with extreme delays).
-*   **R² Score (Coefficient of Determination):** **0.3102**. The model explains about **31% of the variance** in delivery delays. This suggests that while the model captures systemic trends, logistics remain highly stochastic.
+*   **Mean Absolute Error (MAE):** **5.57 days**.
+*   **Root Mean Squared Error (RMSE):** **8.43 days**.
+*   **R² Score:** **0.3102**. The model explains about **31% of the variance** in delivery delays.
 
-## 2. Key Features Influencing Delays
-The model's predictive power is driven by several engineered features:
+## 3. Key Features Influencing Delays
+The model's predictive power is driven by:
+*   **Haversine Distance:** Physical distance between customer and seller.
+*   **Historical Aggregates:** Average historical delays by City and Zip Code.
+*   **Temporal Features:** Purchase timing (month, hour, weekend).
+*   **Order Size:** Number of items in the order.
 
-*   **Haversine Distance:** The calculated physical distance (in km) between the `customer_zip_code` and `seller_zip_code` proved to be a primary predictor.
-*   **Historical Aggregates:** Average historical delays calculated at the **Zip Code** and **City** levels provided context for logistical "bottlenecks."
-*   **Temporal Features:** Purchase timing (month, hour, weekend) accounts for fluctuations in order volume and carrier capacity.
-*   **Order Size:** The number of items in a single order correlates with increased complexity in processing and shipping.
+## 4. Business Impact Analysis
+Using this model to flag and prevent delays has a direct quantifiable impact on platform health:
+*   **Late orders:** 7,183 (7.5% of total orders).
+*   **Review score drop:** A late delivery costs the platform **1.83 points** per review on average.
+*   **Potential Gain:** If we could prevent just **50% of late orders** (3,591 orders):
+    *   Overall average review score would increase by **0.068 points**.
+    *   Significant reduction in customer support tickets related to 1-2 star reviews.
 
-## 3. Business Insights
-*   **Impact on Reviews:** Orders that are late (approximately 7.5% of total) see their average review score drop from **4.29** (on-time) to **2.46** (late).
-*   **Late Order Severity:** Among late orders, the average delay is **10.02 days**, indicating that once an order misses its window, the delay tends to be significant.
-*   **Risk Mitigation:** The model can be used to identify "High Risk" orders at the time of purchase, allowing Olist to adjust customer expectations or expedite carrier handovers.
-
-## 4. Model Limitations
-*   **Outlier Influence:** The model struggles to predict the rare but extreme cases (delay > 30 days) which significantly impact the RMSE.
+## 5. Model Limitations
+*   **Data Gaps:** Lack of real-time transit data (weather, carrier strikes).
+*   **Non-Linear Delays:** Stochastic nature of logistics.
+*   **Outlier Influence:** Difficulty in predicting extreme "Black Swan" delay events.
