@@ -32,11 +32,14 @@ To run the application manually on your local machine, follow these steps:
     ```bash
     python --version
     ```
-2. cd src
 
-3. Install the required dependencies:
+2. Install the required dependencies:
    ```bash
    pip install -r requirements.txt
+   ```
+3. Install the required dependencies:
+   ```bash
+   cd src
    ```
 
 4. Start the FastAPI application:
