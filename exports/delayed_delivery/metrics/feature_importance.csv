@@ -1,0 +1,16 @@
+,importance
+customer_zip_avg_delay,0.548695021656274
+seller_zip_avg_delay,0.21588520700054972
+purchase_month,0.08617503390176451
+customer_seller_distance_km,0.04126281043757829
+customer_zip_order_volume,0.02745518711723289
+purchase_quarter,0.02204216130917641
+customer_city_avg_delay,0.02018864478551019
+state_pair_encoded,0.012850138042727834
+purchase_hour,0.0057221737169573465
+region_pair_encoded,0.004174824610469373
+order_size,0.004054052414724028
+seller_state_encoded,0.003436536643226181
+customer_state_encoded,0.003078973798820989
+purchase_day_of_week,0.0024945876519374926
+seller_region_encoded,0.0014933406906485086

@@ -1,0 +1,6 @@
+=== REGRESSION MODEL PERFORMANCE ===
+Mean Absolute Error (MAE) : 5.57 days
+Root Mean Squared Error   : 8.43 days
+R2 Score                  : 0.3102
+
+Interpretation: On average, predictions are off by 5.57 days.

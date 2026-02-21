@@ -1,0 +1,4 @@
+segment_names,avg_order_value,avg_delivery_time_days,late_delivery_rate,avg_freight_per_order,avg_processing_time_days,avg_review_score
+Efficient Sellers,129.28,7.98,0.05,22.59,2.71,4.25
+Premium Sellers,924.97,9.55,0.08,71.83,3.89,4.13
+Struggling Sellers,187.89,13.41,0.64,27.22,9.12,2.93
