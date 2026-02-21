@@ -44,7 +44,7 @@ To run the application manually on your local machine, follow these steps:
 
 4. Start the FastAPI application:
    ```bash
-   uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+   uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
    ```
 
 5. The API will now be accessible at `http://localhost:8000`. You can access the interactive API documentation at `http://localhost:8000/docs`.
