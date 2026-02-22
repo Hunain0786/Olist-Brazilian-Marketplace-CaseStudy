@@ -29,7 +29,14 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="Delivery Delay & Seller Category Predictor",
+    title="Olist Marketplace Analytics API",
+    description="""
+    This API provides predictive analytics for the Olist Brazilian Marketplace, focusing on delivery logistics and seller performance.
+    
+    Key Features:
+    *Delivery Delay Prediction: Forecasts delays to mitigate negative reviews (33% of bad reviews are delay-related).
+    *Seller Categorization: Segments sellers by revenue impact (Elite vs Emerging) and behavioral efficiency (Reliability vs Struggling).
+    """,
     version="1.1.0",
     lifespan=lifespan,
 )
