@@ -64,8 +64,8 @@ To run the application manually on your local machine, follow these steps:
 
 The API is currently hosted on an **AWS EC2 instance**.
 
-- **Interactive Documentation**: [https://olist-brazilian-marketplace-casestudy.onrender.com/docs]
-- **Base URL**: `https://olist-brazilian-marketplace-casestudy.onrender.com`
+- **Interactive Documentation**: [http://13.60.69.76:8000/docs]
+- **Base URL**: `http://13.60.69.76:8000`
 
 ## Testing the API
 
