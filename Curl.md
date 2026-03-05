@@ -1,6 +1,6 @@
 # API Testing — curl Commands
 
-Live server: **`http://34.228.155.96:8000`**
+Live server: **`https://olist-brazilian-marketplace-casestudy.onrender.com`**
 Interactive docs: [https://olist-brazilian-marketplace-casestudy.onrender.com/docs](https://olist-brazilian-marketplace-casestudy.onrender.com/docs)
 
 ---
