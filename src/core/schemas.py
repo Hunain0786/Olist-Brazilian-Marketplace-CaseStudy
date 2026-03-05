@@ -5,7 +5,14 @@ from pydantic import BaseModel, Field
 
 
 class OrderInput(BaseModel):
+    """Input schema – all fields needed to predict delivery delay."""
 
+    # ── Identifiers / lookup keys ────────────────────────────────────────
+    seller_id: str = Field(
+        ...,
+        description="Unique seller identifier.",
+        examples=["3442f8959a84dea7ee197c632cb2df15"],
+    )
     customer_state: str = Field(
         ...,
         min_length=2, max_length=2,
@@ -17,15 +24,10 @@ class OrderInput(BaseModel):
         description="Customer's city name.",
         examples=["sao paulo"],
     )
-    customer_zip_code_prefix: int = Field(
-        ...,
-        description="First 5 digits of customer zip code.",
-        examples=[1046],
-    )
     seller_state: str = Field(
         ...,
         min_length=2, max_length=2,
-        description="Seller's Brazilian state code (e.g. 'MG').",
+        description="Seller's Brazilian state code.",
         examples=["MG"],
     )
     seller_city: str = Field(
@@ -33,21 +35,61 @@ class OrderInput(BaseModel):
         description="Seller's city name.",
         examples=["belo horizonte"],
     )
-    seller_zip_code_prefix: int = Field(
-        ...,
-        description="First 5 digits of seller zip code.",
-        examples=[30130],
+    product_category_name_english: Optional[str] = Field(
+        None,
+        description="English product category name (optional).",
+        examples=["health_beauty"],
     )
-    order_size: int = Field(
-        ...,
-        ge=1,
+
+    # ── Physical product properties ──────────────────────────────────────
+    product_weight_g: float = Field(
+        ..., ge=0,
+        description="Product weight in grams.",
+        examples=[500.0],
+    )
+    product_height_cm: float = Field(
+        ..., ge=0,
+        description="Product height in cm.",
+        examples=[16.0],
+    )
+    product_width_cm: float = Field(
+        ..., ge=0,
+        description="Product width in cm.",
+        examples=[11.0],
+    )
+    product_length_cm: float = Field(
+        ..., ge=0,
+        description="Product length in cm.",
+        examples=[18.0],
+    )
+
+    # ── Order-level properties ───────────────────────────────────────────
+    total_order_items: int = Field(
+        ..., ge=1,
         description="Number of items in the order.",
         examples=[2],
     )
+    freight_value: float = Field(
+        ..., ge=0,
+        description="Freight value for this item/order.",
+        examples=[15.10],
+    )
+    price: float = Field(
+        ..., ge=0,
+        description="Product price.",
+        examples=[59.90],
+    )
+
+    # ── Timestamps ───────────────────────────────────────────────────────
     order_purchase_timestamp: datetime = Field(
         ...,
         description="Timestamp when the order was placed (ISO 8601).",
         examples=["2024-03-15T14:30:00"],
+    )
+    order_estimated_delivery_date: datetime = Field(
+        ...,
+        description="Estimated delivery date given to the customer (ISO 8601).",
+        examples=["2024-03-28T00:00:00"],
     )
 
 
