@@ -13,27 +13,34 @@ The primary driver for this model was understanding the correlation between late
 ## 2. Evaluation Metric Rationale
 To evaluate the regression model's accuracy, we utilized three distinct metrics:
 
-*   **Mean Absolute Error (MAE):** We chose MAE because it provides an intuitive "real-world" error in units of days. An MAE of 5.57 tells us exactly how much our predictions deviate from reality on average.
+*   **Mean Absolute Error (MAE):** We chose MAE because it provides an intuitive "real-world" error in units of days. An MAE of 4.72 tells us exactly how much our predictions deviate from reality on average.
 *   **Root Mean Squared Error (RMSE):** Logistics delays are non-linear in their impact; a 10-day delay is significantly more damaging to brand trust than two 5-day delays. RMSE penalizes these larger errors more heavily, reflecting the high business cost of extreme delays.
-*   **R² Score:** This metric was used to gauge how much of the "logistical noise" the model could actually explain. Given the unpredictable nature of transit (traffic, weather, etc.), an R² of 0.31 indicates the model has successfully captured a significant portion of the underlying patterns.
+*   **R² Score:** This metric was used to gauge how much of the "logistical noise" the model could actually explain. Given the unpredictable nature of transit (traffic, weather, etc.), an R² of 0.53 indicates the model has successfully captured a significant portion of the underlying patterns.
 
 ---
 
-## 3. Model Performance & Metrics
-A **Random Forest Regressor** was trained and evaluated on the dataset. The key performance indicators are:
+## 3. Splitting Technique: Time-Based Split
+In logistics and time-series forecasting, traditional random splitting can lead to **data leakage**, as future information might inadvertently influence predictions for past events. To simulate a real-world production environment, we employed a **Time-Based Split**:
+*   **Training Set:** Historical data (orders partitioned by their purchase timestamp).
+*   **Test Set:** The most recent orders in the chronologically ordered dataset.
 
-*   **Mean Absolute Error (MAE):** **5.57 days**.
-*   **Root Mean Squared Error (RMSE):** **8.43 days**.
-*   **R² Score:** **0.3102**. The model explains about **31% of the variance** in delivery delays.
+This ensures the model is evaluated on its ability to generalize to "unknown future" data, precisely reflecting how it would perform when predicting delays for incoming orders in a live production setting.
 
-## 3. Key Features Influencing Delays
+## 4. Model Performance & Metrics
+A **Gradient Boosting Regressor** was selected as the best performing model. The key performance indicators are:
+
+*   **Mean Absolute Error (MAE):** **4.72 days**.
+*   **Root Mean Squared Error (RMSE):** **6.22 days**.
+*   **R² Score:** **0.5318**. The model explains about **53% of the variance** in delivery delays.
+
+## 5. Key Features Influencing Delays
 The model's predictive power is driven by:
 *   **Haversine Distance:** Physical distance between customer and seller.
 *   **Historical Aggregates:** Average historical delays by City and Zip Code.
 *   **Temporal Features:** Purchase timing (month, hour, weekend).
 *   **Order Size:** Number of items in the order.
 
-## 4. Business Impact Analysis
+## 6. Business Impact Analysis
 Using this model to flag and prevent delays has a direct quantifiable impact on platform health:
 *   **Late orders:** 7,183 (7.5% of total orders).
 *   **Review score drop:** A late delivery costs the platform **1.83 points** per review on average.
@@ -41,7 +48,7 @@ Using this model to flag and prevent delays has a direct quantifiable impact on 
     *   Overall average review score would increase by **0.068 points**.
     *   Significant reduction in customer support tickets related to 1-2 star reviews.
 
-## 5. Model Limitations
+## 7. Model Limitations
 *   **Data Gaps:** Lack of real-time transit data (weather, carrier strikes).
 *   **Non-Linear Delays:** Stochastic nature of logistics.
 *   **Outlier Influence:** Difficulty in predicting extreme "Black Swan" delay events.
