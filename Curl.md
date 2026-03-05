@@ -51,7 +51,25 @@ Invoke-WebRequest -Uri "http://13.60.69.76:8000/predict_behavior_category" `
 ```bash
 curl -X POST http://13.60.69.76:8000/predict \
   -H "Content-Type: application/json" \
-  -d '{"customer_state":"SP","customer_city":"sao paulo","customer_zip_code_prefix":1046,"seller_state":"MG","seller_city":"belo horizonte","seller_zip_code_prefix":30130,"order_size":2,"order_purchase_timestamp":"2024-03-15T14:30:00"}'
+  -d '{
+    "seller_id": "3442f8959a84dea7ee197c632cb2df15",
+    "customer_state": "SP",
+    "customer_city": "sao paulo",
+    "seller_state": "MG",
+    "seller_city": "belo horizonte",
+    "product_category_name_english": "health_beauty",
+    "product_weight_g": 500,
+    "product_height_cm": 16,
+    "product_width_cm": 11,
+    "product_length_cm": 18,
+    "total_order_items": 2,
+    "freight_value": 15.1,
+    "price": 59.9,
+    "order_purchase_timestamp": "2024-03-15T14:30:00",
+    "order_estimated_delivery_date": "2024-03-28T00:00:00"
+  }'
+
+'
 ```
 
 **PowerShell:**
@@ -59,7 +77,7 @@ curl -X POST http://13.60.69.76:8000/predict \
 Invoke-WebRequest -Uri "http://13.60.69.76:8000/predict" `
   -Method POST `
   -Headers @{"Content-Type"="application/json"} `
-  -Body '{"customer_state":"SP","customer_city":"sao paulo","customer_zip_code_prefix":1046,"seller_state":"MG","seller_city":"belo horizonte","seller_zip_code_prefix":30130,"order_size":2,"order_purchase_timestamp":"2024-03-15T14:30:00"}' `
+  -Body '{"seller_id":"3442f8959a84dea7ee197c632cb2df15","customer_state":"SP","customer_city":"sao paulo","seller_state":"MG","seller_city":"belo horizonte","product_category_name_english":"health_beauty","product_weight_g":500,"product_height_cm":16,"product_width_cm":11,"product_length_cm":18,"total_order_items":2,"freight_value":15.1,"price":59.9,"order_purchase_timestamp":"2024-03-15T14:30:00","order_estimated_delivery_date":"2024-03-28T00:00:00"}' `
   -UseBasicParsing | Select-Object -ExpandProperty Content
 ```
 
